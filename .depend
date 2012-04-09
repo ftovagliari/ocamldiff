@@ -1,0 +1,17 @@
+odiff.cmo : odiff_types.cmi odiff.cmi
+odiff.cmx : odiff_types.cmx odiff.cmi
+odiff_box.cmo : odiff_messages.cmo odiff_merge.cmo odiff.cmi
+odiff_box.cmx : odiff_messages.cmx odiff_merge.cmx odiff.cmx
+odiff_gtk.cmo : odiff_merge.cmo odiff_box.cmo odiff.cmi odiff_gtk.cmi
+odiff_gtk.cmx : odiff_merge.cmx odiff_box.cmx odiff.cmx odiff_gtk.cmi
+odiff_merge.cmo : odiff_messages.cmo
+odiff_merge.cmx : odiff_messages.cmx
+odiff_messages.cmo :
+odiff_messages.cmx :
+odiff_test.cmo : odiff.cmi
+odiff_test.cmx : odiff.cmx
+odiff_types.cmo : odiff_types.cmi
+odiff_types.cmx : odiff_types.cmi
+odiff.cmi : odiff_types.cmi
+odiff_gtk.cmi : odiff.cmi
+odiff_types.cmi :

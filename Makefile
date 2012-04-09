@@ -76,7 +76,7 @@ odiff_gtk.cmxa: odiff.cmxa $(GTK_CMIFILES) $(GTK_CMXFILES)
 
 doc: all
 	mkdir -p html
-	$(OCAMLDOC) -d html -html odiff.mli odiff_gui.mli
+	$(OCAMLDOC) -t OCamldiff -d html -html odiff.mli odiff_gtk.mli
 
 webdoc: doc
 	mkdir -p ../ocamldiff-gh-pages/refdoc

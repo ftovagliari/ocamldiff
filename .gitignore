@@ -3,9 +3,11 @@
 *.a
 *.annot
 .chamo*
-rsstest
-t.rss
-t2.rss
+odifftest
 html
+odiff_parser.ml
+odiff_parser.mli
+odiff_lexer.ml
+
 
 
