@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="next" href="Odiff_gtk.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of class methods" rel=Appendix href="index_methods.html">
+<link title="Index of class types" rel=Appendix href="index_class_types.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Odiff" rel="Chapter" href="Odiff.html">
+<link title="Odiff_gtk" rel="Chapter" href="Odiff_gtk.html"><link title="Representation of differences" rel="Section" href="#2_Representationofdifferences">
+<link title="Printing differences" rel="Section" href="#2_Printingdifferences">
+<link title="Parsing differences" rel="Section" href="#2_Parsingdifferences">
+<link title="Computing differences" rel="Section" href="#2_Computingdifferences">
+<title>OCamldiff : Odiff</title>
+</head>
+<body>
+<div class="navbar">&nbsp;<a href="index.html">Up</a>
+&nbsp;<a href="Odiff_gtk.html">Next</a>
+</div>
+<center><h1>Module <a href="type_Odiff.html">Odiff</a></h1></center>
+<br>
+<pre><span class="keyword">module</span> Odiff: <code class="code">sig</code> <a href="Odiff.html">..</a> <code class="code">end</code></pre>Computing differences.<br>
+<hr width="100%">
+<br>
+<span id="2_Representationofdifferences"><h2>Representation of differences</h2></span><br>
+<pre><span id="TYPEindex"><span class="keyword">type</span> <code class="type"></code>index</span> = <code class="type">Odiff_types.index</code> = </pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">One</span> <span class="keyword">of</span> <code class="type">int</code></code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" >one line</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Many</span> <span class="keyword">of</span> <code class="type">int * int</code></code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" >many lines, we have the first and the last</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr></table>
+
+<div class="info">
+Index in a file or string.<br>
+</div>
+
+<pre><span id="TYPEdiff"><span class="keyword">type</span> <code class="type"></code>diff</span> = <code class="type">Odiff_types.diff</code> = </pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Add</span> <span class="keyword">of</span> <code class="type"><a href="Odiff.html#TYPEindex">index</a> * <a href="Odiff.html#TYPEindex">index</a> * string</code></code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" >for &lt;index&gt;a&lt;index&gt; and the added text</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Delete</span> <span class="keyword">of</span> <code class="type"><a href="Odiff.html#TYPEindex">index</a> * <a href="Odiff.html#TYPEindex">index</a> * string</code></code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" >for &lt;index&gt;d&lt;index&gt; and the deleted text</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Change</span> <span class="keyword">of</span> <code class="type"><a href="Odiff.html#TYPEindex">index</a> * string * <a href="Odiff.html#TYPEindex">index</a> * string</code></code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" >for &lt;index&gt;c&lt;index&gt; and the deleted and added texts</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr></table>
+
+<div class="info">
+Representation of one difference.<br>
+</div>
+
+<pre><span id="TYPEdiffs"><span class="keyword">type</span> <code class="type"></code>diffs</span> = <code class="type"><a href="Odiff.html#TYPEdiff">diff</a> list</code> </pre>
+<div class="info">
+Differences between two texts.<br>
+</div>
+
+<br>
+<span id="2_Printingdifferences"><h2>Printing differences</h2></span><br>
+<pre><span id="VALstring_of_diff"><span class="keyword">val</span> string_of_diff</span> : <code class="type">?offset:int -> <a href="Odiff.html#TYPEdiff">diff</a> -> string</code></pre><div class="info">
+</div>
+<div class="param_info"><code class="code">offset</code> : is added to line numbers (can be useful, like in caml-get!). Default is 0.</div>
+<pre><span id="VALstring_of_diffs"><span class="keyword">val</span> string_of_diffs</span> : <code class="type">?offset:int -> <a href="Odiff.html#TYPEdiffs">diffs</a> -> string</code></pre><pre><span id="VALprint_diffs"><span class="keyword">val</span> print_diffs</span> : <code class="type">Pervasives.out_channel -> ?offset:int -> <a href="Odiff.html#TYPEdiffs">diffs</a> -> unit</code></pre><br>
+<span id="2_Parsingdifferences"><h2>Parsing differences</h2></span><br>
+<pre><span id="VALfrom_string"><span class="keyword">val</span> from_string</span> : <code class="type">string -> <a href="Odiff.html#TYPEdiffs">diffs</a></code></pre><div class="info">
+Return the list of differences from a string generated string.<br>
+<b>Raises</b> <code>Failure</code> if an error occurs.<br>
+</div>
+<pre><span id="VALfrom_channel"><span class="keyword">val</span> from_channel</span> : <code class="type">Pervasives.in_channel -> <a href="Odiff.html#TYPEdiffs">diffs</a></code></pre><div class="info">
+Same as <a href="Odiff.html#VALfrom_string"><code class="code">Odiff.from_string</code></a> but read from the given in_channel.<br>
+</div>
+<pre><span id="VALfrom_file"><span class="keyword">val</span> from_file</span> : <code class="type">string -> <a href="Odiff.html#TYPEdiffs">diffs</a></code></pre><div class="info">
+Same as <a href="Odiff.html#VALfrom_string"><code class="code">Odiff.from_string</code></a> but read from the given file.<br>
+</div>
+<br>
+<span id="2_Computingdifferences"><h2>Computing differences</h2></span><br>
+<pre><span id="VALfiles_diffs"><span class="keyword">val</span> files_diffs</span> : <code class="type">string -> string -> <a href="Odiff.html#TYPEdiffs">diffs</a></code></pre><div class="info">
+<code class="code">files_diffs file1 file2</code> runs the <code class="code">diff</code> command on
+   the given files and returns its parsed output.<br>
+<b>Raises</b> <code>Failure</code> if an error occurs.<br>
+</div>
+<pre><span id="VALstrings_diffs"><span class="keyword">val</span> strings_diffs</span> : <code class="type">string -> string -> <a href="Odiff.html#TYPEdiffs">diffs</a></code></pre><div class="info">
+Same as <a href="Odiff.html#VALfiles_diffs"><code class="code">Odiff.files_diffs</code></a> but on strings. The two strings
+   are put in two files to run the <code class="code">diff</code> command. The files
+   are removed before returning the result.<br>
+<b>Raises</b> <code>Failure</code> if an error occurs.<br>
+</div>
+</body></html>
