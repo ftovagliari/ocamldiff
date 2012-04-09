@@ -1,5 +1,5 @@
 #################################################################################
-#                OCamlrss                                                       #
+#                OCamldiff                                                      #
 #                                                                               #
 #    Copyright (C) 2004-2012 Institut National de Recherche en Informatique     #
 #    et en Automatique. All rights reserved.                                    #
@@ -116,7 +116,7 @@ clean:
 
 # headers :
 ###########
-HEADFILES=Makefile *.ml *.mli
+HEADFILES=Makefile *.ml *.mli *.mly *.mll
 .PHONY: headers noheaders
 headers:
 	headache -h header -c .headache_config $(HEADFILES)
