@@ -30,6 +30,8 @@ PACKAGES=unix,lablgtk2
 
 OF_FLAGS=-package $(PACKAGES)
 OCAMLFIND=ocamlfind
+OCAMLLEX=ocamllex
+OCAMLYACC=ocamlyacc
 OCAML_COMPFLAGS= -annot
 OCAMLC=$(OCAMLFIND) ocamlc $(OF_FLAGS) $(OCAML_COMPFLAGS)
 OCAMLOPT=$(OCAMLFIND) ocamlopt $(OF_FLAGS) $(OCAML_COMFLAGS)
@@ -110,7 +112,7 @@ archive:
 # Cleaning :
 ############
 clean:
-	rm -f *.cm* *.a *.annot *.o
+	rm -f *.cm* *.a *.annot *.o odiff_lexer.ml odiff_parser.ml odiff_parser.mli
 
 # headers :
 ###########
@@ -137,6 +139,13 @@ noheaders:
 
 %.cmx %.o:%.ml
 	$(OCAMLOPT) -c $<
+
+%.mli %.ml: %.mly
+	$(OCAMLYACC) $<
+
+%.ml: %.mll
+	$(OCAMLLEX) $<
+
 
 include .depend
 

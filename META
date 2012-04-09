@@ -1,6 +1,12 @@
 version = "1.0"
-description = "Reading/writing RSS files for OCaml"
-requires = "xmlm,unix"
-archive(byte) = "rss.cma"
-archive(native) = "rss.cmxa"
-archive(toploop) = "rss.cma"
+description = "Reading and displaying diff results in OCaml"
+requires = "unix"
+archive(byte) = "odiff.cma"
+archive(native) = "odiff.cmxa"
+archive(toploop) = "odiff.cma"
+package "gtk" (
+  description = "LablGtk interface"
+  requires = "lablgtk2"
+  archive(byte) = "odiff_gtk.cma"
+  archive(native) = "odiff_gtk.cmxa"
+)

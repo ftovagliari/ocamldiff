@@ -1,2 +1,2 @@
-OCaml-RSS is an OCaml library to read and write RSS files.
-More information on http://zoggy.github.com/ocamlrss
+OCamldiff is an OCaml library to parse and display diff results.
+More information on http://zoggy.github.com/ocamldiff
