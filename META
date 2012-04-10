@@ -5,6 +5,7 @@ archive(byte) = "odiff.cma"
 archive(native) = "odiff.cmxa"
 archive(toploop) = "odiff.cma"
 package "gtk" (
+  version = "1.0"
   description = "LablGtk interface"
   requires = "diff,lablgtk2"
   archive(byte) = "odiff_gtk.cma"
