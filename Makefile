@@ -25,8 +25,10 @@
 
 #
 VERSION=1.0
+PACKAGE=diff
 
 PACKAGES=unix,lablgtk2
+
 
 OF_FLAGS=-package $(PACKAGES)
 OCAMLFIND=ocamlfind
@@ -97,12 +99,12 @@ test: odifftest
 # installation :
 ################
 install: byte opt
-	$(OCAMLFIND) install diff META LICENSE \
+	$(OCAMLFIND) install $(PACKAGE) META LICENSE \
 	odiff.cmi odiff.cma odiff.cmxa odiff.a \
 	odiff_gtk.cmi odiff_gtk.cma odiff_gtk.cmxa odiff_gtk.a
 
 uninstall:
-	ocamlfind remove diff
+	ocamlfind remove $(PACKAGE)
 
 # archive :
 ###########
