@@ -6,7 +6,7 @@ archive(native) = "odiff.cmxa"
 archive(toploop) = "odiff.cma"
 package "gtk" (
   description = "LablGtk interface"
-  requires = "lablgtk2"
+  requires = "diff,lablgtk2"
   archive(byte) = "odiff_gtk.cma"
   archive(native) = "odiff_gtk.cmxa"
 )
