@@ -24,10 +24,11 @@
 #################################################################################
 
 #
-VERSION=1.0
+# do not forget to update META file
+VERSION=1.1
 PACKAGE=diff
 
-PACKAGES=unix,lablgtk2
+PACKAGES=unix
 
 
 OF_FLAGS=-package $(PACKAGES)
@@ -41,8 +42,8 @@ OCAMLDOC=$(OCAMLFIND) ocamldoc $(OF_FLAGS)
 OCAMLDEP=ocamldep
 
 all: byte opt
-byte: odiff.cma odiff_gtk.cma
-opt: odiff.cmxa odiff_gtk.cmxa
+byte: odiff.cma
+opt: odiff.cmxa
 
 CMOFILES= \
 	odiff_types.cmo \
@@ -53,32 +54,20 @@ CMOFILES= \
 CMXFILES=$(CMOFILES:.cmo=.cmx)
 CMIFILES=$(CMOFILES:.cmo=.cmi)
 
-GTK_CMOFILES= \
-	odiff_messages.cmo \
-	odiff_merge.cmo \
-	odiff_box.cmo \
-	odiff_gtk.cmo
-
-GTK_CMXFILES=$(GTK_CMOFILES:.cmo=.cmx)
-GTK_CMIFILES=$(GTK_CMOFILES:.cmo=.cmi)
-
 odiff.cma: $(CMIFILES) $(CMOFILES)
 	$(OCAMLC) -o $@ -a $(CMOFILES)
 
 odiff.cmxa: $(CMIFILES) $(CMXFILES)
 	$(OCAMLOPT) -o $@ -a $(CMXFILES)
 
-odiff_gtk.cma: odiff.cma $(GTK_CMIFILES) $(GTK_CMOFILES)
-	$(OCAMLC) -o $@ -a $(GTK_CMOFILES)
-
-odiff_gtk.cmxa: odiff.cmxa $(GTK_CMIFILES) $(GTK_CMXFILES)
-	$(OCAMLOPT) -o $@ -a $(GTK_CMXFILES)
+odiff.cmxs: $(CMIFILES) $(CMXFILES)
+	$(OCAMLOPT) -o $@ -shared $(CMXFILES)
 
 .PHONY: doc depend
 
 doc: all
 	mkdir -p html
-	$(OCAMLDOC) -t OCamldiff -d html -html odiff.mli odiff_gtk.mli
+	$(OCAMLDOC) -t OCamldiff -d html -html odiff.mli
 
 webdoc: doc
 	mkdir -p ../ocamldiff-gh-pages/refdoc
@@ -91,17 +80,11 @@ webdoc: doc
 odifftest: odiff.cmxa odiff_test.ml
 	$(OCAMLOPT) -linkpkg -o $@ $^
 
-test: odifftest
-	@./rsstest test.rss > t.rss
-	@./rsstest t.rss > t2.rss
-	@((diff t.rss t2.rss && echo OK) || echo "t.rss and t2.rss differ")
-
 # installation :
 ################
 install: byte opt
 	$(OCAMLFIND) install $(PACKAGE) META LICENSE \
-	odiff.cmi odiff.cma odiff.cmxa odiff.a \
-	odiff_gtk.cmi odiff_gtk.cma odiff_gtk.cmxa odiff_gtk.a
+	odiff.cmi odiff.cma odiff.cmxa odiff.a odiff.cmxs
 
 uninstall:
 	ocamlfind remove $(PACKAGE)
