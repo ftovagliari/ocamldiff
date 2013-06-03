@@ -43,7 +43,7 @@ OCAMLDEP=ocamldep
 
 all: byte opt
 byte: odiff.cma
-opt: odiff.cmxa
+opt: odiff.cmxa odiff.cmxs
 
 CMOFILES= \
 	odiff_types.cmo \
