@@ -131,7 +131,8 @@ let file_of_string ~file s =
 (*/c==v=[File.file_of_string]=1.1====*)
 
 let files_diffs f1 f2 =
-  let com = Printf.sprintf "diff %s %s"
+  let com = Printf.sprintf "diff%s %s %s"
+      (if Sys.win32 then " --binary" else "")
       (Filename.quote f1) (Filename.quote f2)
   in
   let ic =
