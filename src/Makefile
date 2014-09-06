@@ -83,7 +83,7 @@ odifftest: odiff.cmxa odiff_test.ml
 # installation :
 ################
 install: byte opt
-	$(OCAMLFIND) install $(PACKAGE) META LICENSE \
+	$(OCAMLFIND) install $(PACKAGE) META.diff LICENSE \
 	odiff.cmi odiff.cma odiff.cmxa odiff.a odiff.cmxs
 
 uninstall:
