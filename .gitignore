@@ -8,6 +8,14 @@ html
 odiff_parser.ml
 odiff_parser.mli
 odiff_lexer.ml
+ocamldiff.project.local
+.tmp
+.cache
+bak
+*.obj
+*.lib
+*.exe
+.oebuild
 
 
 
